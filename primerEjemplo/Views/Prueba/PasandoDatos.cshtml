@@ -1,0 +1,62 @@
+﻿@if (ViewBag.FechaNacimiento == null)
+{
+    <p>No se ha proporcionado Informacion de la Persona</p>
+} 
+else
+{
+    <div>
+        Edad: @ViewBag.Edad <br />
+        Nombre: @ViewBag.Nombre <br />
+        Casado: @ViewBag.peso <br />
+        Fecha de Nacimiento: @ViewBag.FechaNacimiento.ToShortDateString() <br />
+    </div>
+}
+<hr />
+<h3>Datos del Producto</h3>
+@if (ViewBag.producto == null)
+{
+    <p>No se ha proporcionado Informacion del Producto</p>
+}
+else
+{
+    <div>
+        Nombre: @ViewBag.producto.Nombre <br />
+        Precio: @ViewBag.producto.Precio <br />
+        Codigo: @ViewBag.producto.Id <br />
+        <img src="~/img/@ViewBag.producto.Foto" /> <br />
+        Cantidad: @ViewBag.producto.Cantidad <br />
+    </div>
+}
+
+<hr />
+<h3>Lista del Productos</h3>
+
+@if (@ViewBag.productos == null)
+{
+    <p>No se ha proporcionado Informacion de la lista de Productos</p>
+} else
+{
+    <table class="table table-striped" border="1">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Codigo</th>
+                <th>Foto</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var producto in ViewBag.productos)
+            {
+                <tr>
+                    <td>@producto.Nombre</td>
+                    <td>@producto.Precio</td>
+                    <td>@producto.Id</td>
+                    <td><img src="~/img/@producto.Foto" alt="Foto del Producto" style="width: 50px; height: 50px;" /></td>
+                    <td>@producto.Cantidad</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
