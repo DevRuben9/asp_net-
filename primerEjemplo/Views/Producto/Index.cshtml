@@ -1,0 +1,34 @@
+﻿@model primerEjemplo.Models.Producto;
+
+<h3>Registro de Productos</h3>
+
+<h5>Envio de Archivos</h5>
+
+<form asp-controller="Producto" asp-action="Registrar" method="post" enctype="multipart/form-data">
+<div class="col-md-12 row">
+    <label class="col-md-3"> Id: </label>
+    <div class="col-md-8"><input type="text" id="id" asp-for="Id" class="form-control form-control-sm col-md-12" /></div>
+</div>
+<div class="col-md-12 row">
+    <label class="col-md-3"> Nombre: </label>
+    <div class="col-md-8"><input type="text" id="nombre" asp-for="Nombre" class="form-control form-control-sm col-md-12" /></div>
+</div>
+<div class="col-md-12 row">
+    <label class="col-md-3"> Precio: </label>
+    <div class="col-md-8"><input asp-for="Precio" id="precio" class="form-control form-control-sm col-md-12"/></div>
+</div>
+<div class="col-md-12 row">
+    <label class="col-md-3"> Cantidad: </label>
+    <div class="col-md-8"><input asp-for="Cantidad" id="cant" class="form-control form-control-sm col-md-12" /></div>
+</div>
+<div class="col-md-12 row">
+    <label class="col-md-3"> Imagen: </label>
+    <div class="col-md-8">
+        <input type="file" id="imagen" name="imagen" />
+    </div>
+</div>
+<div>
+        
+    <button type="submit" class="btn btn-success">Enviar</button>
+</div>
+</form>

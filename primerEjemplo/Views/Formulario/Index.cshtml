@@ -1,0 +1,57 @@
+﻿@model primerEjemplo.Models.CuentaParaView;
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-5">
+            <form method="post" asp-controller="Formulario" asp-action="Registrar">
+                <div class="col-md-12 row">
+                    <label class="col-md-3"> Usuarios: </label>
+                    <div class="col-md-8"><input type="text" asp-for="Cuenta.Usuario" class="form-control form-control-sm col-md-12" /></div>
+                </div>
+                <div class="col-md-12 row">
+                    <label class="col-md-3"> Password: </label>
+                    <div class="col-md-8"><input type="password" asp-for="Cuenta.Password" class="form-control form-control-sm col-md-12" /></div>
+                </div>
+                <div class="col-md-12 row">
+                    <label class="col-md-3"> Usuarios: </label>
+                    <div class="col-md-8"><textarea asp-for="Cuenta.Descripcion" class="form-control form-control-sm col-md-12" rows="4" cols="20"></textarea></div>
+                </div>
+                <div class="col-md-12 row">
+                    <label class="col-md-3"> Disponible: </label>
+                    <div class="col-md-8"><input type="checkbox" asp-for="Cuenta.Disponible" class="form-check-input col-md-12" /></div>
+                </div>
+                <div class="col-md-12 row">
+                    <label class="col-md-3"> Genero: </label>
+                    <div class="col-md-8">
+                        <input type="radio" asp-for="Cuenta.Genero" value="M" class="form-check-input col-md-12" />Masculino <br/>
+                        <input type="radio" asp-for="Cuenta.Genero" value="F" class="form-check-input col-md-12" />Feminino
+                    </div>
+                </div>
+                <div class="col-md-12 row">
+                    <label class="col-md-3"> Lenguajes de Programación: </label>
+                    <div class="col-md-8">
+                        @for (var i = 0; i < Model.Lenguajes.Count; i++)
+                        {
+                            <input type="hidden" asp-for="@Model.Lenguajes[i].Id"/>
+                            <input type="hidden" asp-for="@Model.Lenguajes[i].Nombre" />
+                            <input type="checkbox" class="form-check-input" asp-for="@Model.Lenguajes[i].Tickedo" />
+                            @Model.Lenguajes[i].Nombre
+                            <br />
+                        }
+                    </div>
+                </div>
+                <div class="col-md-12 row">
+                    <label class="col-md-3"> Cargos: </label>
+                    <div class="col-md-8">
+                        <select asp-for="Cuenta.Cargo" asp-items="@Model.Cargos"></select>
+                    </div>
+                </div>
+                <div>
+                    <input type="hidden" asp-for="Cuenta.Id" />
+                    <button type="submit" class="btn btn-success">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+﻿<h3>Datos del Producto Registrado</h3>
+<h5>Manejo de Archivos</h5>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Imagen</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            <tr>
+                <td>@ViewBag.prod.Id</td>
+                <td>@ViewBag.prod.Nombre</td>
+                <td>@ViewBag.prod.Precio</td>
+                <td>@ViewBag.prod.Cantidad</td>
+                <td><img src="~/img/@ViewBag.prod.Foto" alt="ViewBag.prod.Foto" style="width: 100px; height: auto;" /></td>
+            </tr>
+        }
+    </tbody>
+</table>

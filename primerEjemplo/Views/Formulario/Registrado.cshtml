@@ -1,0 +1,39 @@
+﻿<table class="table table-bordered">
+    <tr>
+        <td>Id: </td>
+        <td>@ViewBag.Cuenta.Id</td>
+    </tr>
+    <tr>
+        <td>Usuario: </td>
+        <td>@ViewBag.Cuenta.Usuario</td>
+    </tr>
+    <tr>
+        <td>Password: </td>
+        <td>@ViewBag.Cuenta.Password</td>
+    </tr>
+    <tr>
+        <td>Descripcion: </td>
+        <td>@ViewBag.Cuenta.Descripcion</td>
+    </tr>
+    <tr>
+        <td>Disponible: </td>
+        <td>@ViewBag.Cuenta.Disponible</td>
+    </tr>
+    <tr>
+        <td>Genero: </td>
+        <td>@ViewBag.Cuenta.Genero</td>
+    </tr>
+    <tr>
+        <td>Cargo: </td>
+        <td>@ViewBag.Cuenta.Cargo</td>
+    </tr>
+    <tr>
+        <td>Lenguajes de Programación: </td>
+        <td>
+            @foreach (var lenguaje in ViewBag.Cuenta.Lenguajes)
+            {
+                <span>@lenguaje</span> <br />
+            }
+        </td>
+    </tr>
+</table>
