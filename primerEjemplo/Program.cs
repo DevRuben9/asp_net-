@@ -8,6 +8,8 @@ namespace primerEjemplo
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            //añadiendo servicios session
+            builder.Services.AddSession();
 
             var app = builder.Build();
 
@@ -19,6 +21,7 @@ namespace primerEjemplo
                 app.UseHsts();
             }
 
+            app.UseSession(); // Activando el uso de session
             app.UseHttpsRedirection();
             app.UseRouting();
 

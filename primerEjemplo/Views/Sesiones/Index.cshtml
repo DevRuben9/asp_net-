@@ -1,0 +1,45 @@
+﻿@using primerEjemplo.Herramientas;
+<h3>Manejo de Sessiones</h3>
+<h5>Los valores de sesion son:</h5>
+
+<p>Edad: @Context.Session.GetInt32("Edad")</p>
+<p>Edad: @Context.Session.GetString("Nombre")</p>
+
+<h5>Los valores del objeto Json:</h5>
+
+<p>Producto: @Context.Session.GetString("productito")</p>
+
+@{
+    Producto producto = ConversorSupremo.JsonToCsharp<Producto>(Context.Session, "productito");
+}
+<p>Id: @producto.Id</p>
+<p>Nombre: @producto.Nombre</p>
+<p>Precio: @producto.Precio</p>
+<p>Cantidad: @producto.Cantidad</p>
+<p>Foto: <img src="~/img/@producto.Nombre" width="100px" /></p>
+
+@{
+    List<Producto> productos = ConversorSupremo.JsonToCsharp<List<Producto>>(Context.Session, "productos");
+}
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Foto</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Subtotal</th>
+    </tr>
+    @foreach (var p in productos)
+    {
+        <tr>
+            <td>@p.Id</td>
+            <td>@p.Nombre</td>
+            <td><img src="~/imagenes/@p.Foto" height="100px"></td>
+            <td>@p.Precio</td>
+            <td>@p.Cantidad</td>
+            <td>@(p.Cantidad* p.Precio)</td>
+        </tr>
+
+    }
+</table>

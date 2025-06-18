@@ -1,0 +1,39 @@
+﻿@using primerEjemplo.Models.ParaCarrito;
+@using primerEjemplo.Herramientas;
+
+<h3>Productos en el carrito</h3>
+@{
+    List<Item> carrito = ConversorSupremo.JsonToCsharp<List<Item>>(Context.Session, "carrito");
+}
+<table class="table table-bordered">
+    <tr>
+        <td>ID</td>
+        <td>Nombre</td>
+        <td>Precio</td>
+        <td>Imagen</td>
+        <td>Cantidad</td>
+        <td>Sub Total</td>
+        <td>Opciones</td>
+    </tr>
+    @foreach (Item item in carrito)
+    {
+        <tr>
+            <td>@item.Producto.Id</td>
+            <td>@item.Producto.Nombre</td>
+            <td>@item.Producto.Precio</td>
+            <td><img src="@item.Producto.Foto" alt="@item.Producto.Foto" style="width: 100px; height: 100px;" /></td>
+            <td>@item.Cantidad</td>
+            <td>@(item.Producto.Precio * item.Cantidad)</td>
+            <td>
+                <a class="btn btn-danger" href="@Url.Action("Eliminar", "Carrito", new { id = item.Producto.Id })">Eliminar</a>
+            </td>
+        </tr>
+    }
+    <tr>
+        <td colspan="5" align="right">Total:</td>
+        <td>@carrito.Sum(i => i.Producto.Precio * i.Cantidad)</td>
+        <td></td>
+    </tr>
+</table>
+<br />
+<a class="btn btn-primary" href="@Url.Action("Index", "minimarket")">Seguir Comprando</a>"

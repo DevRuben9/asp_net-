@@ -12,15 +12,21 @@
         </tr>
     </thead>
     <tbody>
-        @if (Model != null)
+        <tr>
+            <td>@ViewBag.prod.Id</td>
+            <td>@ViewBag.prod.Nombre</td>
+            <td>@ViewBag.prod.Precio</td>
+            <td>@ViewBag.prod.Cantidad</td>
+            <td><img src="~/img/@ViewBag.prod.Foto" alt="ViewBag.prod.Foto" style="width: 100px; height: auto;" /></td>
+        </tr>
+        @foreach (var imagen in ViewBag.imagenes)
         {
             <tr>
-                <td>@ViewBag.prod.Id</td>
-                <td>@ViewBag.prod.Nombre</td>
-                <td>@ViewBag.prod.Precio</td>
-                <td>@ViewBag.prod.Cantidad</td>
-                <td><img src="~/img/@ViewBag.prod.Foto" alt="ViewBag.prod.Foto" style="width: 100px; height: auto;" /></td>
+                <td colspan="5">
+                    <img src="~/img/@imagen.FileName" alt="@imagen.FileName" style="width: 100px; height: auto;" />
+                </td>
             </tr>
         }
+)
     </tbody>
 </table>

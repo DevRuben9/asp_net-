@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using primerEjemplo.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace primerEjemplo.Controllers
 {
@@ -20,17 +21,25 @@ namespace primerEjemplo.Controllers
         }
 
         [HttpPost]
-        public IActionResult Registrar(Producto producto, IFormFile imagen)
+        public IActionResult Registrar(Producto producto, IFormFile[] imagenes)
         {
-            if (imagen != null && imagen.Length > 0)
+            if (imagenes != null && imagenes.Length > 0)
             {
-                String ruta = Path.Combine(webHostEnvironment.WebRootPath, "img", imagen.FileName);
-                using (var stream = new FileStream(ruta, FileMode.Create))
+                foreach (var imagen in imagenes)
                 {
-                    imagen.CopyToAsync(stream);
+                    if (imagen.Length > 0)
+                    {
+                        var ruta = Path.Combine(webHostEnvironment.WebRootPath, "img", imagen.FileName);
+                        using (var stream = new FileStream(ruta, FileMode.Create))
+                        {
+                            imagen.CopyTo(stream);
+                        }
+                        
+                    }
                 }
-                producto.Foto = imagen.FileName;
+                producto.Foto = imagenes[0].FileName;
                 ViewBag.prod = producto;
+                ViewBag.imagenes = imagenes;
             }
             else {
                 return Content("Imagen Necesario, Vuelva a intentarlo...");
@@ -38,4 +47,5 @@ namespace primerEjemplo.Controllers
             return View("Registrado");
         }
     }
+    
 }

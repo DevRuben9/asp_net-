@@ -1,0 +1,24 @@
+﻿@using primerEjemplo.Models.ParaCarrito;
+
+<h3>Productos para la venta</h3>
+<h5>Ejemplo de sesiones para carrito</h5>
+
+<table class="table table-info table-striped">
+    <tr>
+        <td>Id</td>
+        <td>Nombre</td>
+        <td>Precio</td>
+        <td>Imagenes</td>
+        <td>Acciones</td>
+    </tr>
+    @foreach (var produc in ViewBag.productos)
+    {
+        <tr>
+            <td>@produc.Id</td>
+            <td>@produc.Nombre</td>
+            <td>@produc.Precio</td>
+            <td><img src="~/img/@produc.Foto" alt="@produc.Foto" style="width: 80px; height: 80px;" /></td>
+            <td><a class="btn btn-success btn-sm" href="@Url.Action("Agregar", "Carrito", new { id = produc.Id })">Agregar al carrito</a></td>
+        </tr>
+    }
+</table>

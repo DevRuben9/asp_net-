@@ -18,4 +18,21 @@
             this.Cantidad = Cantidad;
         }
     }
+
+    namespace ParaCarrito
+    {
+
+        public class Producto
+        {
+            public string Id { get; set; }
+            public string Nombre { get; set; }
+            public string Foto { get; set; }
+            public double Precio { get; set; }
+        }
+
+        public class Item { 
+            public Producto Producto { get; set; }
+            public int Cantidad { get; set; }
+        }
+    }
 }
